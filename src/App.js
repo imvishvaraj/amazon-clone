@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './Header';    // importing header from header.js file
+import Home from './Home';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
 
       {/* Home */}
+      <Home />
     </div>
   );
 }
