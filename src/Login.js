@@ -1,8 +1,31 @@
 import React from 'react';
 import './Login.css'
 import { Link } from 'react-router-dom';
+import { auth } from './firebase';
 
 function Login() {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const signIn = e => {
+        e.preventDefault();
+
+        //some fancy firebase login shitttt...
+    }
+
+    const register = e => {
+        e.preventDefault();
+
+        // some fancy firebase register shitt...
+        auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                // it successfully created a new user with email and password
+                console.log(auth);
+            })
+            .catch(error => alert(error.message))
+    }
+
     return (
         <div className='login'>
             <Link to='/'>
@@ -14,12 +37,12 @@ function Login() {
 
                 <form>
                     <h5>E-mail</h5>
-                    <input type='text' />
+                    <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 
                     <h5>Password</h5>
-                    <input type='password' />
+                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
-                    <button className='login__signInButton'>Sign In</button>
+                    <button onClick={signIn} type='submit' className='login__signInButton' >Sign In</button> 
                 </form>
 
                 <p>
@@ -28,7 +51,7 @@ function Login() {
                     Notice.
                 </p>
 
-                <button className='login__registerButton'>Create your AMAZON Account!</button>
+                <button onClick={register} className='login__registerButton'>Create your AMAZON Account!</button>
             </div>
         </div>
     )
