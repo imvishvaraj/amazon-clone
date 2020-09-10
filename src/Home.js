@@ -13,12 +13,14 @@ function Home() {
                 <div className="home__row">
                     {/* render product component 2 */}
                     <Product 
+                        id={1}
                         title='The Lean Startup' 
                         price={29.99} 
                         image='https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg'
                         rating={3}
                     />
                     <Product 
+                        id={2}
                         title='Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer'
                         price={239.4}
                         rating={4}
@@ -29,18 +31,21 @@ function Home() {
                 <div className="home__row">
                     {/* render product component 3 */}
                     <Product 
+                        id={3}
                         title='Grokking Deep Learning'
                         price={34.45}
                         rating={5}
                         image='https://m.media-amazon.com/images/I/61erwLHUDtL._AC_UX500_SY400_.jpg'
                     />
                     <Product 
+                        id={4}
                         title='AmazonBasics High-Speed HDMI Cable, 6 Feet'
                         price={5}
                         rating={3}
                         image='https://m.media-amazon.com/images/I/41bCxnHksnL._AC_UX500_SY400_.jpg'
                     />
                     <Product 
+                        id={5}
                         title='Callas Metal Mesh Desk Organizer, Black LD 708-05'
                         price={7}
                         rating={4}
@@ -51,6 +56,7 @@ function Home() {
                 <div className="home__row">
                     {/* render product component 1 */}
                     <Product 
+                        id={6}
                         title='Bean Bag White Fur XXXL Size Without Beans Very Attractive'
                         price={20}
                         rating={4}
