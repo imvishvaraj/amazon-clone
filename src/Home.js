@@ -28,14 +28,34 @@ function Home() {
 
                 <div className="home__row">
                     {/* render product component 3 */}
-                    <Product />
-                    <Product />
-                    <Product />
+                    <Product 
+                        title='Grokking Deep Learning'
+                        price={34.45}
+                        rating={5}
+                        image='https://m.media-amazon.com/images/I/61erwLHUDtL._AC_UX500_SY400_.jpg'
+                    />
+                    <Product 
+                        title='AmazonBasics High-Speed HDMI Cable, 6 Feet'
+                        price={5}
+                        rating={3}
+                        image='https://m.media-amazon.com/images/I/41bCxnHksnL._AC_UX500_SY400_.jpg'
+                    />
+                    <Product 
+                        title='Callas Metal Mesh Desk Organizer, Black LD 708-05'
+                        price={7}
+                        rating={4}
+                        image='https://m.media-amazon.com/images/I/51mytH7t-cL._AC_UX500_SY400_.jpg'
+                    />
                 </div>
 
                 <div className="home__row">
                     {/* render product component 1 */}
-                    <Product />
+                    <Product 
+                        title='Bean Bag White Fur XXXL Size Without Beans Very Attractive'
+                        price={20}
+                        rating={4}
+                        image='https://m.media-amazon.com/images/I/517JipWd3wL._AC_UX500_SY400_.jpg'
+                    />
                 </div>
             </div>
         </div>

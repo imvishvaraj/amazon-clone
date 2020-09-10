@@ -2,12 +2,10 @@ import React from 'react';
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from './StateProvider';
+import { getBasketTotal } from './reducer';
 
 function Subtotal() {
     const [{ basket }, dispatch] = useStateValue();
-
-    const totalPrice = basket.map(item => item.price).reduce((prev, curr) => prev + curr, 0);
-    console.log(totalPrice);
 
     return (
         <div className="subtotal">
@@ -18,7 +16,7 @@ function Subtotal() {
                             {/* Part of the homework */}
                             Subtotal ({basket?.length} items):
                             <strong>
-                                {totalPrice}
+                                {value}
                             </strong>
                         </p>
 
@@ -29,7 +27,7 @@ function Subtotal() {
                     </>
                 )}
                 decimalScale={2}
-                value={0} // part of homework
+                value={getBasketTotal(basket)} // part of homework
                 displayType={"text"}
                 thoudandSeparator={true}
                 prefix={"$"}
