@@ -1,9 +1,10 @@
 import React from 'react';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { auth } from './firebase';
 
 function Login() {
+    const history = useHistory();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -11,6 +12,12 @@ function Login() {
         e.preventDefault();
 
         //some fancy firebase login shitttt...
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .then(auth => {
+                history.push('/')
+            })
+            .catch(error => alert(error.message))
     }
 
     const register = e => {
@@ -22,6 +29,9 @@ function Login() {
             .then((auth) => {
                 // it successfully created a new user with email and password
                 console.log(auth);
+                if (auth) {
+                    history.push('/')
+                }
             })
             .catch(error => alert(error.message))
     }
@@ -29,7 +39,7 @@ function Login() {
     return (
         <div className='login'>
             <Link to='/'>
-                <img className='login__logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' />
+                <img className='login__logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' alt="" />
             </Link>
 
             <div className='login__container'>
