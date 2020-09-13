@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# removing node directory from repository
+node_modules/
+
 # personal config
 src/firebase.js
 
