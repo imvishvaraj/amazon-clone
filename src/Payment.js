@@ -6,7 +6,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { getBasketTotal } from './reducer';
 import CurrencyFormat from "react-currency-format";
-import Axios from 'axios';
+import axios from './axios';
+import { db } from '.firebase';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -25,7 +26,7 @@ function Payment() {
         // generate the special stripe secret which allows us to charge a customer
 
         const getClientSecret = async () => {
-            const response = await Axios({
+            const response = await axios({
                 method: 'post',
                 // Stripe expects the total in a currencies subunits
                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
@@ -34,7 +35,9 @@ function Payment() {
         }
 
         getClientSecret();
-    }, [basket])
+    }, [basket]);
+
+    console.log('The secret is >>> ', clientSecret)
 
     const handleSubmit = async (event) => {
         // do all the fancy stripe stuff...
@@ -48,24 +51,30 @@ function Payment() {
         }).then(({ paymentIntent }) => {
             // PaymentIntent = payment confirmation
 
+        
+
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+
+            dispatch({
+                type: 'EMPTY_BASKET'
+            })
 
             history.replace('/orders')
         })
     }
 
-    const handleChange = e => {
+    const handleChange = event => {
         // Listem for changes in the CardElement
         // and display any error as the customer types their card details
-        setDisabled(React.event.empty);
-        setError(React.event.error ? React.event.error.message : "");
+        setDisabled(event.empty);
+        setError(event.error ? event.error.message : "");
     }
 
     return (
         <div className="payment">
-            <div classname='payment__container'>
+            <div className='payment__container'>
                 <h1>
                     Checkout ({<Link to='/checkout'>{basket?.length} items</Link>})
                 </h1>
@@ -90,11 +99,11 @@ function Payment() {
                     <div className='payment__items'>
                         {basket.map(item => (
                             <CheckoutProduct 
-                                id={item.id}
-                                title={item.title}
-                                image={item.image}
-                                price={item.price}
-                                rating={item.rating}
+                                id={item?.id} 
+                                title={item?.title} 
+                                image={item?.image} 
+                                price={item?.price} 
+                                rating={item?.rating} 
                             />
                         ))}
                     </div>
@@ -105,11 +114,13 @@ function Payment() {
                     <div className='payment__title'>
                         <h3>Payment Method</h3>
                     </div>
+
                     <div className='payment__details'>
                             {/* Stripe magic will go */}
                             <form onSubmit={handleSubmit}>
                                 <CardElement onChange={handleChange}/>
 
+                                {/*  */}
                                 <div className='payment__priceContainer'>
                                     <CurrencyFormat 
                                         renderText={(value) => (
@@ -134,7 +145,8 @@ function Payment() {
                                 {/*  Errors */}
                                 {error && <div>{error}</div>}
                             </form>
-                    </div>                    
+                    </div> 
+
                 </div>
 
             </div>
