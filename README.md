@@ -59,4 +59,4 @@ To view video tutorial by Sonny & Quzi, Please do visit - [Clever Progammer](htt
 `firebase deploy --only hosting`
 `firebase deploy --only functions`
 
-##### DO NOT USE `firebase deploy` DIRECTLY, IT WILL DEPLOY APPS DIRECTLY.
+##### DO NOT USE `firebase deploy` DIRECTLY, IT WILL DEPLOY ALL APPS DIRECTLY.
