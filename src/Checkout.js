@@ -24,11 +24,11 @@ function Checkout() {
                     {/* CheckoutProduct  */}
                     {basket.map(item => (
                         <CheckoutProduct 
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            image={item.image}
-                            rating={item.rating}
+                            id={item?.id}
+                            title={item?.title}
+                            price={item?.price}
+                            image={item?.image}
+                            rating={item?.rating}
                         />
                     ))}
                      
